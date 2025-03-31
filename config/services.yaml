@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    InspiredMinds\ContaoFutureCacheInvalidation\:
+        resource: ../src
+        exclude: ../src/{ContaoManager,DependencyInjection,ContaoFutureCacheInvalidationBundle.php}
+
+    InspiredMinds\ContaoFutureCacheInvalidation\EventListener\SaveCallbackListener:
+        public: true
