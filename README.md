@@ -34,7 +34,7 @@ vendor/bin/contao-console messenger:consume cache_invalidation
 ```
 
 There is still a caveat: the cache invalidation is based on the `contao.db.*.*` cache tags. However, this will not
-work for the `start` case, as the cache tag would be missing for that URL. For child elements like articles or content
+work for the `start` case, as the cache tag would be missing for that URL. For child elements like articles, content
 elements or news (child of a news archive) it will still work as the extension will also invalidate the tags of the
 parent. But for pages for example this will not be solved - i.e. when you have a `start` time for page, it still will
 not show up in a navigation module for example.
