@@ -33,6 +33,12 @@ Plus you have to consume the messages somehow via
 vendor/bin/contao-console messenger:consume cache_invalidation
 ```
 
+e.g. via `crontab` entry like this:
+
+```
+* * * * * /usr/bin/php /var/www/example.com/vendor/bin/contao-console messenger:consume cache_invalidation --time-limit=59 --quiet
+```
+
 There is still a caveat: the cache invalidation is based on the `contao.db.*.*` cache tags. However, this will not
 work for the `start` case, as the cache tag would be missing for that URL. For child elements like articles, content
 elements or news (child of a news archive) it will still work as the extension will also invalidate the tags of the
