@@ -44,12 +44,20 @@ class SaveCallbackListener
         }
 
         $tags = [\sprintf('contao.db.%s.%s', $dc->table, $dc->id)];
+        $clear = false;
 
-        if ($isStart && $dc->activeRecord->pid && ($ptable = $this->getPtable($dc))) {
-            $tags[] = \sprintf('contao.db.%s.%s', $ptable, $dc->activeRecord->pid);
+        if ($isStart) {
+            // If this is the "start" date, then we want to invalidate the parent's tag
+            // (since there won't be a tag for the current record). If no parent is present
+            // (like for tl_page) we invalidate the whole cache instead.
+            if ($dc->activeRecord->pid && ($ptable = $this->getPtable($dc))) {
+                $tags[] = \sprintf('contao.db.%s.%s', $ptable, $dc->activeRecord->pid);
+            } else {
+                $clear = true;
+            }
         }
 
-        $this->messageBus->dispatch(new InvalidateCacheMessage(tags: $tags), [new DelayStamp($delay * 1000)]);
+        $this->messageBus->dispatch(new InvalidateCacheMessage(tags: $tags, clear: $clear), [new DelayStamp($delay * 1000)]);
     }
 
     private function getPtable(DataContainer $dc): string|null
@@ -62,7 +70,7 @@ class SaveCallbackListener
         }
 
         if ($dynamicPtable && $dc->activeRecord->ptable) {
-            return $dc->activeRecord->ptable;
+            return $dc->activeRecord->ptable ?: 'tl_article';
         }
 
         return $ptable;

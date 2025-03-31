@@ -19,6 +19,7 @@ class InvalidateCacheMessage
         private readonly array $paths = [],
         private readonly array $regex = [],
         private readonly array $tags = [],
+        private readonly bool $clear = false,
     ) {
     }
 
@@ -35,5 +36,10 @@ class InvalidateCacheMessage
     public function getRegex(): array
     {
         return $this->regex;
+    }
+
+    public function getClear(): bool
+    {
+        return $this->clear;
     }
 }
