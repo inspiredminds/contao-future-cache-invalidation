@@ -33,7 +33,7 @@ Plus you have to consume the messages somehow via
 vendor/bin/contao-console messenger:consume cache_invalidation
 ```
 
-e.g. via `crontab` entry like this:
+e.g. via a `crontab` entry like this:
 
 ```
 * * * * * /usr/bin/php /var/www/example.com/vendor/bin/contao-console messenger:consume cache_invalidation --time-limit=59 --quiet
