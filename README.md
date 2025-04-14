@@ -27,7 +27,7 @@ framework:
             'InspiredMinds\ContaoFutureCacheInvalidation\Message\InvalidateCacheMessage': cache_invalidation
 ```
 
-If you use a `doctrine://` transport you will also have to install `symfony/doctrine-messenger`:
+If you use such a `doctrine://` transport you will also have to install `symfony/doctrine-messenger`:
 
 ```
 composer require symfony/doctrine-messenger
