@@ -27,7 +27,13 @@ framework:
             'InspiredMinds\ContaoFutureCacheInvalidation\Message\InvalidateCacheMessage': cache_invalidation
 ```
 
-Plus you have to consume the messages somehow via
+If you use a `doctrine://` transport you will also have to install `symfony/doctrine-messenger`:
+
+```
+composer require symfony/doctrine-messenger
+```
+
+Then you have to consume the messages somehow via
 
 ```
 vendor/bin/contao-console messenger:consume cache_invalidation
