@@ -13,7 +13,7 @@ In Contao **5** you will only need to route the message manually:
 framework:
     messenger:
         routing:
-            'InspiredMinds\ContaoFutureCacheInvalidation\Message\InvalidateCacheMessage': contao_prio_low
+            'InspiredMinds\ContaoFutureCacheInvalidation\Message\InvalidateCacheMessage': contao_prio_high
 ```
 
 In Contao **4.13** you will also have to create a messenger transport, e.g.:
