@@ -57,3 +57,10 @@ transport types:
 * `doctrine`
 * `amqp`
 * `redis`
+
+There is also a command with which you can create these future cache invalidation messages for all existing database
+entries after installation:
+
+```
+vendor/bin/contao-console contao_future_cache_invalidation:create-messages
+```

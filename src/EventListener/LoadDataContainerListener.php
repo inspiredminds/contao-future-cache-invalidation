@@ -22,17 +22,17 @@ class LoadDataContainerListener
                 continue;
             }
 
-            if (!\is_array($dca['fields'][$field]['save_callback'] ?? null)) {
-                $dca['fields'][$field]['save_callback'] = [];
+            if (!\is_array($dca['config']['onsubmit_callback'] ?? null)) {
+                $dca['config']['onsubmit_callback'] = [];
             }
 
-            foreach ($dca['fields'][$field]['save_callback'] as $callback) {
-                if (\is_array($callback) && SaveCallbackListener::class === $callback[0]) {
+            foreach ($dca['config']['onsubmit_callback'] as $callback) {
+                if (\is_array($callback) && OnSubmitCallbackListener::class === $callback[0]) {
                     continue 2;
                 }
             }
 
-            $dca['fields'][$field]['save_callback'][] = [SaveCallbackListener::class, \sprintf('onSave%s', ucfirst($field))];
+            $dca['config']['onsubmit_callback'][] = [OnSubmitCallbackListener::class, '__invoke'];
         }
     }
 }

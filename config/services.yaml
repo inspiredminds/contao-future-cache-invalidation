@@ -7,5 +7,5 @@ services:
         resource: ../src
         exclude: ../src/{ContaoManager,DependencyInjection,ContaoFutureCacheInvalidationBundle.php}
 
-    InspiredMinds\ContaoFutureCacheInvalidation\EventListener\SaveCallbackListener:
+    InspiredMinds\ContaoFutureCacheInvalidation\EventListener\OnSubmitCallbackListener:
         public: true
